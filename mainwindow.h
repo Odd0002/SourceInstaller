@@ -6,7 +6,6 @@
 void autoMode();
 bool getFile();
 void buildStart();
-//
 
 namespace Ui {
 class MainWindow;
