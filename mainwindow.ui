@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="AutomaticTab">
        <attribute name="title">
@@ -68,7 +68,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_4">
+         <widget class="QPushButton" name="autoCompileButton">
           <property name="text">
            <string>Compile</string>
           </property>
@@ -148,7 +148,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="compileButton1">
+         <widget class="QPushButton" name="manualCompileButton">
           <property name="text">
            <string>Compile</string>
           </property>
@@ -290,7 +290,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="compileButton2">
+         <widget class="QPushButton" name="advancedCompileButton">
           <property name="text">
            <string>Compile</string>
           </property>
