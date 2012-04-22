@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 #include <QApplication>
 #include <QtGui>
 #include <QFileDialog>
@@ -17,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
 
 
     /*QMessageBox msgBox;
@@ -91,7 +91,7 @@ void MainWindow::on_browseButtonAuto_clicked()
 {
     if (!getFile())
         return;
-    //setText(sourceFilePath);
-
+    //dirTextAuto->setText(sourceFilePath);
+    connect(0,SIGNAL(null),dirTextAuto, SLOT(setText(sourceFilePath)));
 
 }
