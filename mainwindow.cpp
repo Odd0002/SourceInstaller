@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+//will clean up includes later
+
 #include <QApplication>
 #include <QtGui>
 #include <QFileDialog>
@@ -92,6 +94,5 @@ void MainWindow::on_browseButtonAuto_clicked()
     if (!getFile())
         return;
     //dirTextAuto->setText(sourceFilePath);
-    connect(0,SIGNAL(null),dirTextAuto, SLOT(setText(sourceFilePath)));
 
 }
