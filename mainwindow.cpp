@@ -93,6 +93,7 @@ void MainWindow::on_browseButtonAuto_clicked()
 {
     if (!getFile())
         return;
-    //dirTextAuto->setText(sourceFilePath);
+    //dirTextAuto is a lineEdit element in mainwindow.ui
+    dirTextAuto->setText(sourceFilePath);
 
 }
