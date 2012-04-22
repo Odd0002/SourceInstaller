@@ -5,8 +5,9 @@
 #include "ui_mainwindow.h"
 
 void autoMode();
-bool getFile();
+QString getFile();
 void buildStart();
+void extractFile();
 
 namespace Ui {
 class MainWindow;
@@ -24,13 +25,13 @@ public:
 
 private slots:
 
-    void on_actionChoose_file_triggered();
-
-    void on_actionAutomatic_mode_triggered();
-
     void on_autoCompileButton_clicked();
 
     void on_browseButtonAuto_clicked();
+
+    void on_browseButtonManual_clicked();
+
+    void on_browseButtonAdvanced_clicked();
 
 private:
     Ui::MainWindow *ui;

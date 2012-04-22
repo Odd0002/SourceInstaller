@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>386</width>
-    <height>564</height>
+    <height>514</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="AutomaticTab">
        <attribute name="title">
@@ -267,16 +267,6 @@
             <widget class="QLineEdit" name="makeFlags"/>
            </item>
            <item>
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Configure flags:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="configureFlags"/>
-           </item>
-           <item>
             <widget class="QLabel" name="label_3">
              <property name="text">
               <string>Environmental Variables (seperate with a semicolon):</string>
@@ -311,15 +301,6 @@
      <height>24</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuSourceInstallerAlpha">
-    <property name="title">
-     <string>File</string>
-    </property>
-    <addaction name="actionAutomatic_mode"/>
-    <addaction name="separator"/>
-    <addaction name="actionChoose_file"/>
-   </widget>
-   <addaction name="menuSourceInstallerAlpha"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

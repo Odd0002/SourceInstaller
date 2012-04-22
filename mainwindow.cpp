@@ -9,8 +9,7 @@
 #include <QFileSystemModel>
 #include <QLineEdit>
 
-QString sourceFilePath;
-QString tempDirPath;
+QString tempDirPath = QDir::homePath() + "/.sourceInstallerTemp/";
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -33,67 +32,71 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionChoose_file_triggered()
+QString getFile()
 {
-    getFile();
+    return (QFileDialog::getOpenFileName(0,"Choose a tar.gz or tar.bz2 file to compile...",QDir::homePath(),"Compressed tarball files (*.tar.gz *.tar.bz2)"));
 }
 
-bool getFile()
+void extractFile(QString sourceFile)
 {
-    sourceFilePath = "";
-    sourceFilePath = QFileDialog::getOpenFileName(0,"Choose a tar.gz or tar.bz2 file to compile...",QDir::homePath(),"Compressed tarball files (*.tar.gz *.tar.bz2)");
-    if (sourceFilePath == "")
-       return false;
-    else
-        return true;
-}
-
-void buildStart()
-{
-    if (!getFile())
+    if (sourceFile == ""  || (!(sourceFile.endsWith('2', Qt::CaseInsensitive)) && !(sourceFile.endsWith('z', Qt::CaseInsensitive))))
     {
+        QMessageBox msgBox;
+        msgBox.setText("No file set!");
+        msgBox.exec();
         return;
     }
+    QProcess::execute("mkdir "+ tempDirPath);
+    if (sourceFile.endsWith('2', Qt::CaseInsensitive))
+        QProcess::execute("tar -xJf "+ sourceFile + " -C " + tempDirPath);
+    else
+        QProcess::execute("tar -xzf "+ sourceFile + " -C " + tempDirPath);
 
     QMessageBox msgBox;
-    msgBox.setText("Would you like to automatically build the project?");
-    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel);
-    msgBox.setDefaultButton(QMessageBox::Cancel);
-    switch (msgBox.exec()) {
-       case QMessageBox::Yes:
-        autoMode();
-           break;
-       case QMessageBox::No:
-           break;
-       case QMessageBox::Cancel:
-           break;
-       default:
-           break;
-     }
-}
-
-void autoMode()
-    {
-    QMessageBox msgBox;
-    msgBox.setText("UNIMPLIMENTED");
+    msgBox.setText(tempDirPath);
     msgBox.exec();
-    }
 
-void MainWindow::on_actionAutomatic_mode_triggered()
-{
-    buildStart();
+    return;
 }
+
+void buildStart(QString buildCommand, QString envVariables, QString makeOptions)
+{
+    QProcess::execute(buildCommand);
+    QProcess::execute("make " + makeOptions);
+    QWidget sudoPassDialog;
+    QLabel *passwordLabel = new QLabel("Enter your sudo password to install this application or click Cancel not to.");
+    QLineEdit *passwordBox = new QLineEdit(&sudoPassDialog);
+    sudoPassDialog.show();
+
+}
+
 
 void MainWindow::on_autoCompileButton_clicked()
 {
-    //connect(dirTextAuto, SIGNAL(null), dirTextAuto, SLOT(setText(int )));
+    extractFile(ui->dirTextAuto->text());
+    //getBuildType();
 }
 
 void MainWindow::on_browseButtonAuto_clicked()
 {
-    if (!getFile())
-        return;
-    //dirTextAuto is a lineEdit element in mainwindow.ui
-    dirTextAuto.ui->setText(sourceFilePath);
+    QString sourceFilePath = getFile();
+    ui->dirTextAuto->setText(sourceFilePath);
+    ui->dirTextAdvanced->setText(sourceFilePath);
+    ui->dirTextManual->setText(sourceFilePath);
+}
 
+void MainWindow::on_browseButtonManual_clicked()
+{
+    QString sourceFilePath = getFile();
+    ui->dirTextAuto->setText(sourceFilePath);
+    ui->dirTextAdvanced->setText(sourceFilePath);
+    ui->dirTextManual->setText(sourceFilePath);
+}
+
+void MainWindow::on_browseButtonAdvanced_clicked()
+{
+    QString sourceFilePath = getFile();
+    ui->dirTextAuto->setText(sourceFilePath);
+    ui->dirTextAdvanced->setText(sourceFilePath);
+    ui->dirTextManual->setText(sourceFilePath);
 }
