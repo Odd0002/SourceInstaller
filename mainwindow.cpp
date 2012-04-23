@@ -63,11 +63,14 @@ void buildStart(QString buildCommand, QString envVariables, QString makeOptions)
 {
     QProcess::execute(buildCommand);
     QProcess::execute("make " + makeOptions);
+
+
+    /*
     QWidget sudoPassDialog;
     QLabel *passwordLabel = new QLabel("Enter your sudo password to install this application or click Cancel not to.");
     QLineEdit *passwordBox = new QLineEdit(&sudoPassDialog);
     sudoPassDialog.show();
-
+    */
 }
 
 
@@ -99,4 +102,19 @@ void MainWindow::on_browseButtonAdvanced_clicked()
     ui->dirTextAuto->setText(sourceFilePath);
     ui->dirTextAdvanced->setText(sourceFilePath);
     ui->dirTextManual->setText(sourceFilePath);
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    buildStart("./configure","","");
+}
+
+void MainWindow::on_manualCompileButton_clicked()
+{
+    if (ui->configSource->isChecked())
+        buildStart(tempDirPath + "/configure", "","");
+    else if (ui->qtSource->isChecked())
+        buildStart("mkdir "+tempDirPath+"/Build; cd "+tempDirPath+"; cmake ..","","");
+    else if (ui->autogenSource->isChecked())
+        buildStart(tempDirPath+"");
 }

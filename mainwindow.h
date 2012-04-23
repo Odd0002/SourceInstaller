@@ -33,6 +33,10 @@ private slots:
 
     void on_browseButtonAdvanced_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_manualCompileButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
