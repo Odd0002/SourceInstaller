@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>386</width>
-    <height>514</height>
+    <width>437</width>
+    <height>652</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -133,7 +133,7 @@
            <item>
             <widget class="QRadioButton" name="configSource">
              <property name="text">
-              <string>Regular source code (use ./configure)</string>
+              <string>Regular source code (use configure file)</string>
              </property>
             </widget>
            </item>
@@ -141,6 +141,13 @@
             <widget class="QRadioButton" name="qtSource">
              <property name="text">
               <string>QT project (use qmake)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="CMakeSource">
+             <property name="text">
+              <string>CMake</string>
              </property>
             </widget>
            </item>
@@ -234,9 +241,16 @@
             </widget>
            </item>
            <item>
+            <widget class="QRadioButton" name="CMakeSource_2">
+             <property name="text">
+              <string>CMake</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QRadioButton" name="autogenSource_2">
              <property name="text">
-              <string>Another type of source code (use autogen.sh)</string>
+              <string>Other type of source code (use autogen.sh)</string>
              </property>
             </widget>
            </item>
@@ -304,7 +318,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>386</width>
+     <width>437</width>
      <height>24</height>
     </rect>
    </property>

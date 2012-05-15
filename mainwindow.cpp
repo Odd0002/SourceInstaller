@@ -39,17 +39,17 @@ QString getFile()
 
 void extractFile(QString sourceFile)
 {
-    if (sourceFile == ""  || (!(sourceFile.endsWith('2', Qt::CaseInsensitive)) && !(sourceFile.endsWith('z', Qt::CaseInsensitive))))
+    if (sourceFile == ""  || !(QFile::exists(sourceFile)) ||(!(sourceFile.right(4)==".bz2" && !(sourceFile.right(3)==".gz"))))
     {
         QMessageBox msgBox;
-        msgBox.setText("No file set!");
+        msgBox.setText("No file set or file does not exist!");
         msgBox.exec();
         return;
     }
     QProcess::execute("mkdir "+ tempDirPath);
-    if (sourceFile.endsWith('2', Qt::CaseInsensitive))
+    if (sourceFile.right(4)==".bz2")
         QProcess::execute("tar -xJf "+ sourceFile + " -C " + tempDirPath);
-    else
+    else if (sourceFile.right(3)==".gz")
         QProcess::execute("tar -xzf "+ sourceFile + " -C " + tempDirPath);
 
     QMessageBox msgBox;
@@ -112,9 +112,24 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_manualCompileButton_clicked()
 {
     if (ui->configSource->isChecked())
+    {
+        if (QFile::exists(tempDirPath+"/configure"))
+        {
         buildStart(tempDirPath + "/configure", "","");
+        }
+        else
+        {
+
+
+        }
+    }
     else if (ui->qtSource->isChecked())
-        buildStart("mkdir "+tempDirPath+"/Build; cd "+tempDirPath+"; cmake ..","","");
-    else if (ui->autogenSource->isChecked())
-        buildStart(tempDirPath+"");
+        buildStart("mkdir "+tempDirPath+"/Build; cd "+tempDirPath+"; qmake ..","","");
+    else if (ui->autogenSource->isChecked()&& QFile::exists(tempDirPath+"/autogen.sh"));
+        //buildStart(tempDirPath+"/autogen.sh");
+}
+
+void MainWindow::on_configSource_clicked()
+{
+
 }
