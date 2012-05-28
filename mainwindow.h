@@ -37,7 +37,9 @@ private slots:
 
     void on_manualCompileButton_clicked();
 
-    void on_configSource_clicked();
+    void on_actionQuit_triggered();
+
+    void on_advancedCompileButton_clicked();
 
 private:
     Ui::MainWindow *ui;

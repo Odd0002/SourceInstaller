@@ -129,7 +129,14 @@ void MainWindow::on_manualCompileButton_clicked()
         //buildStart(tempDirPath+"/autogen.sh");
 }
 
-void MainWindow::on_configSource_clicked()
-{
 
+void MainWindow::on_actionQuit_triggered()
+{
+    exit(0);
+}
+
+void MainWindow::on_advancedCompileButton_clicked()
+{
+    if (ui->qtSource_2->isChecked())
+    buildStart(ui->customCompileCommand->text(), ui->ENV_VARS->text(), ui->makeFlags->text());
 }
